@@ -155,10 +155,6 @@ public class GitUploader {
 
         log("outputPath: %s", outputPath.getAbsolutePath());
 
-        if (dryRun) {
-            return;
-        }
-
         Git git = Git.init().setDirectory(outputPath).call();
 
         git.add().setUpdate(true).addFilepattern(".").call();
@@ -179,9 +175,16 @@ public class GitUploader {
 
         push.add(masterRef).setRemote(gitRepository);
 
-        push.setRefSpecs(new RefSpec("HEAD:refs/heads/" + branch));
+        RefSpec refSpec = new RefSpec("HEAD:refs/heads/" + branch);
+        push.setRefSpecs(refSpec);
 
         push.setForce(true);
+
+        log("Will push to %s", refSpec.getDestination());
+
+        if (dryRun) {
+            return;
+        }
 
         push.call();
     }
