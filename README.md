@@ -1,6 +1,6 @@
 # git-motel
 
-![alt text][imgs/git-motel.jpg]
+![alt text][https://github.com/ingenieux/git-motel/blob/master/imgs/git-motel.jpg]
 
 ## What is it?
 
