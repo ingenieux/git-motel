@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import java.nio.file.Files;
 import org.apache.commons.io.output.NullOutputStream;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.PushCommand;
@@ -121,7 +122,7 @@ public class GitUploader {
                 gitKey = config.get("git_key");
             }
 
-            File tempKeyFile = File.createTempFile("tmp", ".key");
+            File tempKeyFile = Files.createTempFile("tmp", ".key");
 
             s3.getObject(new GetObjectRequest(bucket, gitKey), tempKeyFile);
 
